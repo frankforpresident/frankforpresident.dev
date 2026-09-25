@@ -1,0 +1,15 @@
+{
+  // Worker names must be lowercase alphanumeric with dashes, so this cannot
+  // match the domain. Wrangler's auto-generated config derived the name from
+  // package.json and produced an invalid "frankforpresident.dev".
+  "name": "frankforpresident-dev",
+  "compatibility_date": "2026-09-25",
+
+  // The site is fully prerendered, so there is no Worker script: no "main",
+  // and no ASSETS binding (that is only valid alongside a Worker script).
+  // This is also why the @astrojs/cloudflare adapter is not installed.
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}

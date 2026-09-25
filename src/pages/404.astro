@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base>
+  <main id="main" class="wrap notfound">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <i></i><i></i><i></i>
+        <span>guest@frankforpresident.dev — zsh</span>
+      </div>
+      <div class="terminal-body">
+        <p class="terminal-line">
+          <span class="terminal-prompt">guest@ffp:~$</span> cat {Astro.url.pathname}
+        </p>
+        <p class="terminal-line error">cat: {Astro.url.pathname}: No such file or directory</p>
+        <p class="terminal-line">&nbsp;</p>
+        <p class="terminal-line dim">There is only one page here, and this is not it.</p>
+        <p class="terminal-line">
+          <span class="terminal-prompt">guest@ffp:~$</span> cd <a href="/">/</a>
+        </p>
+      </div>
+    </div>
+
+    <a class="button button-primary" href="/">Back to the homepage</a>
+  </main>
+</Base>
+
+<style>
+  .notfound {
+    min-height: 100svh;
+    display: grid;
+    align-content: center;
+    justify-items: start;
+    gap: 2rem;
+    padding-block: 4rem;
+  }
+
+  .notfound .terminal {
+    width: min(100%, 44rem);
+  }
+
+  .notfound .terminal-body {
+    height: auto;
+  }
+</style>

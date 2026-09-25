@@ -1,0 +1,54 @@
+---
+import { links, site } from '../data/site';
+
+const chips = ['about', 'work', 'stack', 'github', 'linkedin', 'email', 'help'];
+---
+
+<div class="terminal" id="terminal">
+  <div class="terminal-bar">
+    <i></i><i></i><i></i>
+    <span>guest@{site.url.replace('https://', '')} — zsh</span>
+  </div>
+
+  <div class="terminal-body" id="terminal-body">
+    {/* Shown until the terminal script takes over, and forever without JavaScript. */}
+    <div class="terminal-static">
+      <p class="terminal-line"><span class="terminal-prompt">guest@ffp:~$</span> whoami</p>
+      <p class="terminal-line">{site.name}</p>
+      <p class="terminal-line dim">{site.role}</p>
+      <p class="terminal-line">&nbsp;</p>
+      <p class="terminal-line"><span class="terminal-prompt">guest@ffp:~$</span> cat links.txt</p>
+      <p class="terminal-line"><a href={links.github}>{links.github}</a></p>
+      <p class="terminal-line"><a href={links.linkedin}>linkedin.com/in/frank-peters</a></p>
+      <p class="terminal-line"><a href={`mailto:${links.email}`}>{links.email}</a></p>
+      <p class="terminal-line">&nbsp;</p>
+      <p class="terminal-line">
+        <span class="terminal-prompt">guest@ffp:~$</span>{' '}<span class="cursor"></span>
+      </p>
+    </div>
+
+    <div id="terminal-output" role="log" aria-live="polite" aria-label="Terminal output"></div>
+
+    <form class="terminal-input-row" id="terminal-form" autocomplete="off">
+      <label class="visually-hidden" for="terminal-input">
+        Type a command. Try help. Everything here is also written out on the page below.
+      </label>
+      <span class="terminal-prompt" aria-hidden="true">guest@ffp:~$</span>
+      <input
+        class="terminal-input"
+        id="terminal-input"
+        type="text"
+        autocomplete="off"
+        autocapitalize="off"
+        autocorrect="off"
+        spellcheck="false"
+        enterkeyhint="go"
+      />
+      <button class="visually-hidden" type="submit">Run command</button>
+    </form>
+  </div>
+
+  <div class="terminal-chips">
+    {chips.map((name) => <button type="button" data-command={name}>{name}</button>)}
+  </div>
+</div>

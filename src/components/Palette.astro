@@ -1,0 +1,24 @@
+---
+---
+
+<dialog class="palette" id="palette" aria-label="Command palette">
+  <input
+    id="palette-input"
+    type="text"
+    role="combobox"
+    placeholder="Type a command…"
+    aria-expanded="true"
+    aria-controls="palette-list"
+    aria-autocomplete="list"
+    autocomplete="off"
+    autocapitalize="off"
+    spellcheck="false"
+  />
+  <ul id="palette-list" role="listbox" aria-label="Commands"></ul>
+  {/* A div, not a footer: inside a dialog that would be a second contentinfo landmark. */}
+  <div class="palette-footer">
+    <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+    <span><kbd>↵</kbd> run</span>
+    <span><kbd>esc</kbd> close</span>
+  </div>
+</dialog>

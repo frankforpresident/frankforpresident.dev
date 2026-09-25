@@ -1,0 +1,15 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "no-inline-style": "off",
+    "require-sri": "off",
+    "no-trailing-whitespace": "off",
+    "void-style": "off",
+    "prefer-native-element": [
+      "error",
+      {
+        "exclude": ["listbox", "combobox"]
+      }
+    ]
+  }
+}

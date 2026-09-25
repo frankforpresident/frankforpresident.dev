@@ -1,0 +1,178 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Palette from '../components/Palette.astro';
+import Terminal from '../components/Terminal.astro';
+import { about, links, site, stack, work } from '../data/site';
+---
+
+<Base>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">frank<span>forpresident</span>.dev</a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#stack">Stack</a>
+        <a href="#contact">Contact</a>
+
+        <button class="palette-hint" type="button" id="palette-open">
+          <span>Commands</span>
+          <kbd>⌘K</kbd>
+        </button>
+
+        <button class="icon-button" type="button" id="theme-toggle" aria-label="Toggle colour theme">
+          <Icon name="sun" class="sun" />
+          <Icon name="moon" class="moon" />
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap hero">
+      <div>
+        <p class="hero-status"><span class="dot"></span> {site.location} · low-latency live video</p>
+
+        <h1>Frank Peters builds <em>systems that stay up</em>.</h1>
+
+        <p class="hero-role">{site.role}</p>
+
+        <p class="hero-lead">{site.tagline} Distributed systems in TypeScript and Go, running on Kubernetes.</p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href={links.linkedin} target="_blank" rel="noopener noreferrer">
+            <Icon name="linkedin" /> LinkedIn
+          </a>
+          <a class="button" href={links.github} target="_blank" rel="noopener noreferrer">
+            <Icon name="github" /> GitHub
+          </a>
+          <a class="button" href={`mailto:${links.email}`}>
+            <Icon name="mail" /> Email
+          </a>
+        </div>
+      </div>
+
+      <Terminal />
+    </div>
+
+    <section id="about" class="wrap">
+      <p class="eyebrow">About</p>
+      <div class="about-grid">
+        <div class="about-copy">
+          {about.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+
+        <dl class="facts">
+          <div>
+            <dt>Now</dt>
+            <dd>Dolby Laboratories</dd>
+          </div>
+          <div>
+            <dt>Focus</dt>
+            <dd>Live streaming platforms</dd>
+          </div>
+          <div>
+            <dt>Based in</dt>
+            <dd>{site.location}</dd>
+          </div>
+          <div>
+            <dt>Also</dt>
+            <dd>Computerheld, home automation</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="work" class="wrap">
+      <p class="eyebrow">Selected work</p>
+      <h2 class="section-title">Things I have built and kept running.</h2>
+
+      <ul class="work-list">
+        {
+          work.map((item) => (
+            <li class="work-card">
+              <header>
+                <h3>
+                  {item.href ? (
+                    <a href={item.href} target="_blank" rel="noopener noreferrer">
+                      {item.title}
+                    </a>
+                  ) : (
+                    item.title
+                  )}
+                </h3>
+                <p class="context">{item.context}</p>
+              </header>
+              <p>{item.summary}</p>
+              <ul class="tags">
+                {item.tags.map((tag) => (
+                  <li>{tag}</li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section id="stack" class="stack-section">
+      <div class="wrap">
+        <p class="eyebrow">Stack</p>
+        <h2 class="section-title">What I reach for.</h2>
+
+        <div class="stack-grid">
+          {
+            stack.map((group) => (
+              <div>
+                <h3>{group.label}</h3>
+                <ul>
+                  {group.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="wrap contact">
+      <p class="eyebrow">Contact</p>
+      <h2>Let's talk.</h2>
+      <p>
+        Interesting infrastructure problem, a stream that will not behave, or just a good conversation about
+        Kubernetes. I read everything that arrives.
+      </p>
+
+      <div class="contact-actions">
+        <a class="button button-primary" href={`mailto:${links.email}`}>
+          <Icon name="mail" /> {links.email}
+        </a>
+        <a class="button" href={links.linkedin} target="_blank" rel="noopener noreferrer">
+          <Icon name="linkedin" /> Connect on LinkedIn
+        </a>
+        <a class="button" href={links.github} target="_blank" rel="noopener noreferrer">
+          <Icon name="github" /> Browse the code
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="mono">© {new Date().getFullYear()} {site.name}</p>
+      <p class="mono">Built with Astro · deployed on every push</p>
+    </div>
+  </footer>
+
+  <Palette />
+
+  <script>
+    import '../scripts/main';
+  </script>
+</Base>
